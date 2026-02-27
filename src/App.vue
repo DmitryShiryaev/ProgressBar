@@ -8,8 +8,8 @@
 
     <div class="wrapper">
       <nav>
-        <RouterLink to="/Task1">Task1</RouterLink>
-        <RouterLink to="/Task2">Task2</RouterLink>
+        <RouterLink to="/Task1">Задание 1</RouterLink>
+        <RouterLink to="/Task2">Задание 2</RouterLink>
       </nav>
     </div>
   </header>
@@ -54,7 +54,7 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  white-space: nowrap;
 }
 
 nav a:first-of-type {
