@@ -68,7 +68,6 @@ import ProgressSvg from '@/components/ProgressBarSVG.vue';
 import ProgressCanvas from '@/components/ProgressBarCanvas.vue';
 import { Type } from '@/types';
 
-// --- State ---
 const progress: Ref<number> = ref(65);
 const radius: Ref<number> = ref(70);
 const stroke: Ref<number> = ref(8);
@@ -131,12 +130,6 @@ select {
   cursor: pointer;
 }
 
-.status-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 button {
   padding: 10px 15px;
   cursor: pointer;
@@ -146,20 +139,11 @@ button {
   font-size: 0.9rem;
   transition: all 0.2s;
   text-align: left;
+  &:hover {
+    background: #e9ecef;
+  }
 }
 
-button:hover {
-  background: #e9ecef;
-}
-
-button.active {
-  background: #42b883;
-  color: white;
-  border-color: #42b883;
-  font-weight: bold;
-}
-
-/* Область предпросмотра */
 .display-area {
   display: flex;
   flex-wrap: wrap;
@@ -191,7 +175,6 @@ button.active {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Минимальная высота, чтобы карточка не прыгала */
   min-height: 220px;
 }
 </style>

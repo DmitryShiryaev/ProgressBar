@@ -6,8 +6,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { Status, Type } from '@/types';
-import type { ProgressProps } from '../types';
+import { Status, type ProgressProps } from '@/types';
 import useProgressBar, { hexToRgb } from '@/composables/useProgressBar';
 
 const props = defineProps<ProgressProps>();
@@ -82,7 +81,7 @@ const draw = () => {
   const ctx = cvs.getContext('2d');
   if (!ctx) return;
 
-  const { radius, stroke, type } = props;
+  const { radius, stroke } = props;
   const s = size.value;
   const cx = center.value;
   const cy = center.value;
@@ -101,8 +100,6 @@ const draw = () => {
     ctx.beginPath();
     const lx = cx - dx.value;
     const ly = cy + dy.value;
-    const rx = cx + dx.value;
-    const ry = cy + dy.value;
 
     ctx.moveTo(cx, cy);
     ctx.lineTo(lx, ly);
