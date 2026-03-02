@@ -28,6 +28,16 @@ header {
   width: 100%;
 }
 
+.wrapper {
+  font-family: 'Inter Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 120px);
+  width: 100%;
+}
+
 .logo {
   display: block;
   margin: 0 auto 2rem;
