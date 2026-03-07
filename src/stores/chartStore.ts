@@ -36,20 +36,27 @@ export const useChartStore = defineStore('chart', () => {
 
   function saveItem(data: Partial<ChartItem>) {
     if (data.id && items.value[data.id]) {
-      items.value[data.id] = { ...items.value[data.id], ...data }
+      items.value = {
+        ...items.value,
+        [data.id]: { ...items.value[data.id], ...data },
+      }
     } else {
       const id = uuid();
-      items.value[id] = {
-        id,
-        name: data.name ?? 'Название по умолчанию',
-        percent: data.percent ?? 0,
-        color: data.color ?? '#409EFF'
+      items.value = {
+        ...items.value,
+        [id]: {
+          id,
+          name: data.name ?? 'Название по умолчанию',
+          percent: data.percent ?? 0,
+          color: data.color ?? '#409EFF'
+        }
       }
     }
   }
 
   function removeItem(id: string) {
-    delete items.value[id]
+    const { [id]: removed, ...rest } = items.value
+    items.value = rest
   }
 
   return { items, saveItem, removeItem }

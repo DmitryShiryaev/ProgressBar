@@ -29,7 +29,7 @@ header {
 }
 
 .wrapper {
-  font-family: 'Inter Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Inter, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,6 @@ nav a:first-of-type {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    place-items: center;
   }
 
   .logo {

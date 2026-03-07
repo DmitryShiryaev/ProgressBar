@@ -13,7 +13,7 @@
     <div class="layout">
       <div class="list">
         <el-scrollbar max-height="400px" class="chart-items list-view">
-          <chart-list-item v-for="(item, key) in store.items" :key="key" :data="item"/>
+          <chart-list-item v-for="(item, key) in store.items" :key="key" :data="item" @edit="edit" @remove="remove"/>
         </el-scrollbar>
         <el-button type="primary" @click="openAddDialog" class="add-btn add-chart-item">
           Добавить сектор
@@ -31,20 +31,21 @@ import { ref, watch, onMounted } from 'vue'
 import { useChartStore } from '@/stores/chartStore'
 import ChartFormDialog from '@/components/ChartForm.vue'
 import ChartListItem from '@/components/task2/ChartListItem.vue'
+import type { ChartItem } from '@/stores/chartStore'
 import Chart from 'chart.js/auto'
 
 const store = useChartStore()
 
-const dialogVisible = ref(false)
-const editingItem = ref(null as any)
+const dialogVisible: boolean = ref(false)
+const editingItem: string = ref('')
 
 function openAddDialog() {
   editingItem.value = null
   dialogVisible.value = true
 }
 
-function edit(item: any) {
-  editingItem.value = item
+function edit(id: string) {
+  editingItem.value = id;
   dialogVisible.value = true
 }
 
@@ -52,7 +53,11 @@ function closeDialog() {
   dialogVisible.value = false
 }
 
-function handleSave(data: any) {
+function remove(id: string) {
+  store.removeItem(id)
+}
+
+function handleSave(data: ChartItem) {
   store.saveItem(data)
   dialogVisible.value = false
 }
@@ -61,6 +66,7 @@ const canvasRef = ref<HTMLCanvasElement | null>(null)
 let chart: Chart | null = null
 
 function renderChart() {
+  console.log('renderChart');
   if (!canvasRef.value) return
 
   const labels = Object.values(store.items).map(i => i.name)
@@ -116,11 +122,8 @@ function renderChart() {
 
 onMounted(renderChart)
 
-watch(
-  () => store.items,
-  () => renderChart(),
-  { deep: true }
-)
+watch(() => store.items, () => renderChart());
+
 </script>
 
 <style lang="scss" scoped>
